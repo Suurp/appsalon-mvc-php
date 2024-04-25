@@ -21,14 +21,14 @@ class Email
     {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '326ea20c99a576';
-        $mail->Password = '6837eaad5216c5';
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASSWORD'];
 
         $mail->setFrom('cuentas@appsalon.com', 'AdminAppSalon');
-        $mail->addAddress('cuentas@appsalon.com', 'Appsalon.com');
+        $mail->addAddress($this->email);
         $mail->Subject = 'Confirma tu cuenta de AppSalon';
 
         // HTML
@@ -58,7 +58,7 @@ class Email
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
 
         $mail->setFrom('cuentas@appsalon.com', 'AdminAppSalon');
-        $mail->addAddress('cuentas@appsalon.com', 'Appsalon.com');
+        $mail->addAddress($this->email);
         $mail->Subject = 'Reestablece tu Password AppSalon';
 
         // HTML
